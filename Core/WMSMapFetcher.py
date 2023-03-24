@@ -1,3 +1,6 @@
+import numpy as np
+import slots as slots
+
 from Config import EnvSetup
 from sentinelhub import SHConfig
 from sentinelhub import CRS, BBox, DataCollection, WmsRequest
@@ -31,9 +34,27 @@ wms_true_color_request = WmsRequest(
     maxcc=configSetup.cloud_coverage
 )
 
-wms_true_color_img = wms_true_color_request.get_data()
+wms_true_color_img = wms_true_color_request.get_data() #numpy arrays tipinde resim listesi döner
 
-plot_image(wms_true_color_img[-1])
+plot_image(wms_true_color_img[-1], factor=3.5 / 255)
+plt.show()
+
+
+
+# some stuff for pretty plots
+ncols = 4
+nrows = 3
+aspect_ratio = configSetup.coords_wgs84[0] / configSetup.coords_wgs84[1]
+subplot_kw = {"xticks": [], "yticks": [], "frame_on": False}
+
+fig, axs = plt.subplots(ncols=ncols, nrows=nrows, figsize=(5 * ncols * aspect_ratio, 5 * nrows), subplot_kw=subplot_kw)
+
+for idx, image in enumerate(wms_true_color_img):
+    ax = axs[idx // ncols][idx % ncols]
+    ax.imshow(np.clip(image * 2.5 / 255, 0, 1))
+    ax.set_title(f"{idx}", fontsize=10)
+
+plt.tight_layout()
 plt.show()
 
 
