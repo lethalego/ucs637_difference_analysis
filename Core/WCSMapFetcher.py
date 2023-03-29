@@ -52,7 +52,13 @@ for folder, _, filenames in os.walk(wms_bands_request.data_folder):
         print(os.path.join(folder, filename))
 
 # plot_image(wms_bands_img[-1])  # 3 bandın karışımı true image vermesi lazım
-plot_image(wms_bands_img[-1][:, :, [3, 2, 1]], 2.5)  # 3 bandın karışımı true image vermesi lazım
+plot_image(wms_bands_img[-1][:, :, [3]], 2.5/255)  # 3 bandın karışımı true image vermesi lazım
+plt.show()
+
+plot_image(wms_bands_img[-1][:, :, [2]], 2.5/255)  # 3 bandın karışımı true image vermesi lazım
+plt.show()
+
+plot_image(wms_bands_img[-1][:, :, [1]], 2.5/255)  # 3 bandın karışımı true image vermesi lazım
 
 plt.show()
 
