@@ -1,0 +1,17 @@
+{
+   "map": {
+       "time_range": ["2023-01-15", "2023-02-15"],
+       "coords_wgs84": [38.182983, 37.799476, 38.329926, 37.745200],
+       "cloud_coverage": 0.3,
+       "data_collection": "DataCollection.SENTINEL2_L2A",
+       "layer": "ALL_BANDS",
+       "resX": "10m",
+       "resY": "10m",
+       "data_folder": "test_dir_tiff_2"
+   },
+   "server": {
+       "host": "",
+       "port": 0
+   }
+}
+
