@@ -53,7 +53,7 @@ for folder, _, filenames in os.walk(wcs_bands_request.data_folder):
 
 # plot_image(bands_img[-1])  # 3 bandın karışımı true image vermesi lazım
 
-plot_image(bands_img[-1][:, :, [3]], 2.5 / 255)  # 2
+plot_image(bands_img[-1][:, :, [3]], 2.5 / 255)  # 3
 plt.show()
 
 plot_image(bands_img[-1][:, :, [2]], 2.5 / 255)  # 2

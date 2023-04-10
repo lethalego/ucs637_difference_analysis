@@ -60,7 +60,7 @@ for folder, _, filenames in os.walk(wms_true_color_request.data_folder):
     for filename in filenames:
         print(os.path.join(folder, filename))
 
-image_brigthness_factor = factor = 1.5 / 255
+image_brigthness_factor = factor = 2.5 / 255
 
 plot_image(bands_img[-1], factor=image_brigthness_factor)
 plt.show()

@@ -1,15 +1,15 @@
 from PIL import Image, ImageChops, ImageOps
 
-# ilk görüntüyü yükle
+# ilk görüntü gri
 img1 = Image.open('test_dir_tiff_2/62fef535a3cc9b2a778c7d22489916aa/response.png').convert('L')
 
-# ikinci görüntüyü yükle
+# ikinci görüntü gri
 img2 = Image.open('test_dir_tiff_2/7761716bf7d8cefd667311864bce69cb/response.png').convert('L')
 
-# fark analizini yapmak için görüntülerin farkını al
+# PILLOW fark al
 diff = ImageChops.difference(img1, img2)
 
-# farklılıkları belirginleştirmek için eşik değeri kullan
+# Farklılıkları belirginleştirmek için eşik değeri kullan
 threshold = 50
 mask = diff.point(lambda x: x > threshold and 255)
 

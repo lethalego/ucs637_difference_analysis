@@ -6,7 +6,7 @@ from Core.ImagePlotter import plot_image
 
 imagePath = '../Deneme/deneme_tiff/1d4a5bde06b55e59838e4d68e04512b4/response.tiff'
 
-# Kaydedilen görüntüyü getirme ve gösterme
+# Kaydedilen görüntüyü getir
 with rasterio.open(imagePath) as src:
     print('Width:', src.width)
     print('Height:', src.height)
@@ -24,7 +24,7 @@ with rasterio.open(imagePath) as src:
 
 bands = ['B01', 'B02', 'B03', 'B04', 'B05', 'B06', 'B07', 'B08', 'B8A', 'B09', 'B11', 'B12']
 
-# Kaydedilen görüntünün bütün bantlarını layout olarak gösterme
+# Kaydedilen görüntünün bütün bantlarını layout olarak göster
 fig, axs = plt.subplots(3, 4, figsize=(12, 9))
 for i, band in enumerate(bands):
     with rasterio.open(imagePath) as src:
@@ -48,10 +48,10 @@ with rasterio.open(imagePath) as dataset:
     green = dataset.read(GREEN_BAND)
     blue = dataset.read(BLUE_BAND)
 
-# Combine the bands into a 3D RGB array
+# 4 3 2 bandı birleşince true color verir
 rgb = np.dstack((red, green, blue))
 
-# Display the true color image
+# parlaklığı artır
 plot_image(rgb, factor=2.5 / 255)
 plt.show()
 
