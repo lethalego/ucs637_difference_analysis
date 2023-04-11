@@ -1,39 +1,46 @@
 import numpy as np
-from PIL import Image, ImageChops
-import matplotlib.pyplot as plt
+import rasterio
+from matplotlib import pyplot as plt
+from rasterio.plot import show
+from sklearn.decomposition import PCA
+from sklearn.preprocessing import normalize
+from rasterio.errors import NotGeoreferencedWarning
+import warnings
 
-# İlk görüntüyü yükle
-img1 = Image.open("../Deneme/Image/Before/20230127.png")
+# Suppress georeferencing warning
+warnings.filterwarnings("ignore", category=NotGeoreferencedWarning)
 
-# İkinci görüntüyü yükle
-img2 = Image.open("../Deneme/Image/After/20230209.png")
+# Load two satellite images
+with rasterio.open('../Deneme/Image/Before/20230127.Png') as src:
+    img1 = src.read()
+    profile1 = src.profile
 
-# Fark görüntüsünü oluştur
-diff = ImageChops.subtract(img1, img2)
+with rasterio.open('../Deneme/Image/After/20230209.png') as src:
+    img2 = src.read()
+    profile2 = src.profile
 
-# Fark görüntüsünü RGB renk uzayına dönüştür
-diff_rgb = diff.convert("RGB")
+# Compute difference between two images
+img_diff = img2 - img1
 
-# Her pikselin normalize edilmiş RGB değerlerini hesapla
-def normalize(arr):
-    norm = np.linalg.norm(arr)
-    if norm == 0:
-        return arr
-    return np.clip(arr / norm, 0, 255)
 
-diff_rgb_arr = np.asarray(diff_rgb).astype(np.float32)
-diff_norm = np.apply_along_axis(normalize, 2, diff_rgb_arr)
 
-# Değişim vektörlerini hesapla
-vec_field = diff_norm[:, :, 1] - diff_norm[:, :, 0]
+# Normalize pixel values
+norm_diff = normalize(img_diff.reshape(img_diff.shape[0], -1))
+norm_diff = norm_diff.reshape(img_diff.shape)
 
-# Diff_norm boyutlarını yeniden boyutlandır
-diff_norm_resized = np.resize(diff_norm, vec_field.shape + (3,))
 
-# Quiver plot oluştur
-try:
-    plt.quiver(vec_field[:, :-1], -vec_field[:-1, :], color=diff_norm_resized[:-1, :-1, :]/255)
-    plt.gca().invert_yaxis()
-    plt.show()
-except ValueError as e:
-    print(f"Quiver plot çizdirilemedi: {e}")
+
+# Compute PCA
+pca = PCA(n_components=2, tol=1e-8)
+cva = pca.fit_transform(norm_diff.reshape(norm_diff.shape[0], -1))
+variances = pca.explained_variance_
+components_to_keep = variances > 0
+cva = cva[:, components_to_keep]
+
+# Show results
+fig, ax = plt.subplots()
+show(cva, ax=ax)
+ax.set_xlabel('Component 1 ({:.2f}% explained variance)'.format(variances[0]*100))
+ax.set_ylabel('Component 2 ({:.2f}% explained variance)'.format(variances[1]*100))
+ax.set_title('Change Vector Analysis')
+plt.show()
