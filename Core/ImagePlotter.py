@@ -6,12 +6,24 @@ def plot_image(image, factor=1):
     """
     Utility function for plotting RGB images.
     """
-    plt.subplots(nrows=1, ncols=1, figsize=(15, 7))
+    plt.subplots(nrows=1, ncols=1, figsize=(20, 7))
 
     if np.issubdtype(image.dtype, np.floating):
-        plt.imshow(np.minimum(image * factor, 1))
+        plt.imshow(np.minimum(image * factor, 1), aspect='auto')
     else:
-        plt.imshow(image * factor)
+        plt.imshow(image * factor, aspect='auto')
+
+
+def plot_image_aspect(image, aspect_ratio, factor=1):
+    """
+    Utility function for plotting RGB images.
+    """
+    plt.subplots(nrows=1, ncols=1, figsize=(aspect_ratio * 10, 10))
+
+    if np.issubdtype(image.dtype, np.floating):
+        plt.imshow(np.minimum(image * factor, 1), aspect='auto')
+    else:
+        plt.imshow(image * factor, aspect='auto')
 
 
 def plot_image_layout(image_to_plot, aspect_ratio, factor=1):
