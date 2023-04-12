@@ -3,7 +3,7 @@ import numpy as np
 from PIL import Image
 
 # Load the image
-img = Image.open('../Deneme/Image/Before/20230127.Png')
+img = Image.open('../Deneme/Image/After/20230209.Png')
 
 # Convert the image to RGB mode
 img = img.convert('RGB')
@@ -25,4 +25,4 @@ labels_reshaped = labels.reshape(img_array.shape[0], img_array.shape[1])
 classified_img = Image.fromarray(np.uint8(labels_reshaped))
 
 # Save the classified image as a JPEG
-classified_img.save('sınıflandırılmış_goruntu.jpg', 'JPEG')
+classified_img.save('sınıflandırılmış_goruntu2.jpg', 'JPEG')

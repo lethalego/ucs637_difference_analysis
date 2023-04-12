@@ -1,8 +1,8 @@
 {
    "map": {
        "image_width": 512,
-       "time_range": ["2023-01-15", "2023-02-15"],
-       "coords_wgs84": [38.182983, 37.799476, 38.329926, 37.745200],
+       "time_range": ["2023-01-26", "2023-02-10"],
+       "coords_wgs84": [38.209100911228376,37.78707716093844, 38.33207093825783, 37.729294075874265],
        "cloud_coverage": 0.3,
        "data_collection": "DataCollection.SENTINEL2_L2A",
        "layer": "TRUE_COLOR",

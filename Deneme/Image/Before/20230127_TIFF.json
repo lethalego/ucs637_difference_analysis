@@ -2,22 +2,22 @@
     "request": {
         "headers": {},
         "payload": null,
-        "timestamp": "2023-03-31T19:18:03.040215",
-        "url": "https://services.sentinel-hub.com/ogc/wcs/59fc52dc-c832-40ca-8cee-dcc38d2c8827?SERVICE=wcs&WARNINGS=False&MAXCC=30.0&BBOX=37.7452%2C38.182983%2C37.799476%2C38.329926&FORMAT=image%2Ftiff&CRS=EPSG%3A4326&TIME=2023-01-27T08%3A19%3A39Z%2F2023-01-27T08%3A19%3A39Z&RESX=10m&RESY=10m&COVERAGE=ALL_BANDS&REQUEST=GetCoverage&VERSION=1.1.2"
+        "timestamp": "2023-04-12T20:27:53.154771",
+        "url": "https://services.sentinel-hub.com/ogc/wcs/59fc52dc-c832-40ca-8cee-dcc38d2c8827?SERVICE=wcs&WARNINGS=False&MAXCC=30.0&BBOX=37.729294075874265%2C38.209100911228376%2C37.78707716093844%2C38.33207093825783&FORMAT=image%2Ftiff&CRS=EPSG%3A4326&TIME=2023-01-27T08%3A19%3A39Z%2F2023-01-27T08%3A19%3A39Z&RESX=10m&RESY=10m&COVERAGE=ALL_BANDS&REQUEST=GetCoverage&VERSION=1.1.2"
     },
     "response": {
-        "elapsed": 4.353091,
+        "elapsed": 3.783817,
         "headers": {
             "Connection": "keep-alive",
             "Content-Type": "image/tiff",
-            "Date": "Fri, 31 Mar 2023 16:18:01 GMT",
+            "Date": "Wed, 12 Apr 2023 17:27:44 GMT",
             "Transfer-Encoding": "chunked",
             "access-control-allow-credentials": "true",
             "access-control-allow-headers": "origin, content-type, accept, accept-crs, authorization, cache-control",
             "access-control-allow-methods": "GET, POST, PUT, DELETE, OPTIONS, HEAD, PATCH",
             "access-control-allow-origin": "*",
             "access-control-max-age": "3600",
-            "x-processingunits-spent": "11.907470703125"
+            "x-processingunits-spent": "10.606124877929688"
         },
         "status_code": 200
     }

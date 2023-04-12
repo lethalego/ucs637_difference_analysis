@@ -44,3 +44,4 @@ ax.set_xlabel('Component 1 ({:.2f}% explained variance)'.format(variances[0]*100
 ax.set_ylabel('Component 2 ({:.2f}% explained variance)'.format(variances[1]*100))
 ax.set_title('Change Vector Analysis')
 plt.show()
+
