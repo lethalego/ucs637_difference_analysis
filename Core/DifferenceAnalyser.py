@@ -1,33 +1,27 @@
 from PIL import Image, ImageChops, ImageOps
 
-# ilk görüntü gri
-img1 = Image.open('../Deneme/sınıflandırılmış_goruntu.jpg').convert('L')
+# İlk görüntüyü aç ve renkliye dönüştür
+img1 = Image.open('../Deneme/Image/Before/20230127.png').convert('RGB')
 
-# ikinci görüntü gri
-img2 = Image.open('../Deneme/sınıflandırılmış_goruntu2.jpg').convert('L')
+# İkinci görüntüyü aç ve renkliye dönüştür
+img2 = Image.open('../Deneme/Image/After/20230209.png').convert('RGB')
 
 # PILLOW fark al
 diff = ImageChops.difference(img1, img2)
 
 # Farklılıkları belirginleştirmek için eşik değeri kullan
-threshold = 2
+threshold = 80
 mask = diff.point(lambda x: x > threshold and 255)
 
-# sonuçları görselleştir
+# Sonuçları görselleştir
 mask.show()
 
-# normalized = ImageOps.autocontrast(ImageChops.subtract(img1, img2))
-# # normalleştirilmiş görüntüyü göster
-# normalized.show()
-#
-# colored = Image.merge('RGB', [img1, img2, ImageChops.subtract(img1, img2)])
-# # renkli görüntüyü göster
-# colored.show()
+# Normalize edilmiş görüntüyü elde etmek için ImageOps.autocontrast() fonksiyonunu kullanabilirsiniz
+normalized = ImageOps.autocontrast(ImageChops.subtract(img1, img2))
+# Normalize edilmiş görüntüyü göster
+normalized.show()
 
-
-# '1': 1-bit monochrome image
-# 'L': 8-bit grayscale image
-# 'P': 8-bit palette image
-# 'RGB': 24-bit true color image
-# 'RGBA': 32-bit true color image with transparency mask
-# 'CMYK': 32-bit color separation image
+# Renkli görüntüyü elde etmek için Image.merge() fonksiyonunu kullanabilirsiniz
+colored = Image.merge('RGB', [img1, img2, ImageChops.subtract(img1, img2)])
+# Renkli görüntüyü göster
+colored.show()

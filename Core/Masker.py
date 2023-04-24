@@ -11,7 +11,7 @@ from Core.ImagePlotter import plot_image, plot_image_aspect
 configSetup = ConfigSetupWCS()
 
 # Open the image file
-with rasterio.open('../Deneme/deneme_tiff/e4b8d3e9993ad65bca89d32df5dac0c4/response.tiff') as src:
+with rasterio.open('../Deneme/Image/After/20230209.tiff') as src:
 
     # Read the GeoJSON file and extract the geometry of the polygon
     shapefile = gpd.read_file('../resources/AdiyamanGeo.json')
