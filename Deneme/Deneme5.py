@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 from matplotlib.colors import ListedColormap
 
 # Load the image
-img = Image.open('../Deneme/Image/After/20230209.Png')
+img = Image.open('../Deneme/Image/before.png')
 
 # Convert the image to RGB mode
 img = img.convert('RGB')
@@ -52,4 +52,4 @@ plt.show()
 
 # Save the classified image as a PNG
 classified_img = Image.fromarray((classified_img * 255).astype(np.uint8))
-classified_img.save('sınıflandırılmış_goruntu2.png', 'PNG')
+classified_img.save('sınıflandırılmış_goruntu1.png', 'PNG')

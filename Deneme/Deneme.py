@@ -4,10 +4,10 @@ from matplotlib import pyplot as plt
 from Core.ImagePlotter import plot_image
 
 # İlk görüntüyü yükle
-img1 = Image.open("../Deneme/Image/Before/20230127.Png")
+img1 = Image.open("../Deneme/sınıflandırılmış_goruntu1.png")
 
 # İkinci görüntüyü yükle
-img2 = Image.open("../Deneme/Image/After/20230209.png")
+img2 = Image.open("../Deneme/sınıflandırılmış_goruntu2.png")
 
 # Farklı pikselleri beyaz, aynı pikselleri siyah olarak işaretle
 diff = ImageChops.difference(img1, img2).convert('1')
@@ -57,4 +57,4 @@ for x in range(rgb_diff.width):
 # plt.figure(figsize=(100, 100))
 # plt.show()
 
-rgb_im.save("result.png")
+rgb_im.save("result_s.png")

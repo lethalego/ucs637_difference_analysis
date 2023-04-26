@@ -11,11 +11,11 @@ import warnings
 warnings.filterwarnings("ignore", category=NotGeoreferencedWarning)
 
 # Load two satellite images
-with rasterio.open('../Deneme/Image/Before/20230127.Png') as src:
+with rasterio.open('../Deneme/Image/before.png') as src:
     img1 = src.read()
     profile1 = src.profile
 
-with rasterio.open('../Deneme/Image/After/20230209.png') as src:
+with rasterio.open('../Deneme/Image/after.png') as src:
     img2 = src.read()
     profile2 = src.profile
 

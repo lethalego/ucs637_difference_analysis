@@ -3,7 +3,7 @@ from sklearn.cluster import KMeans
 from PIL import Image
 
 # Load image
-img1 = Image.open("../Deneme/Image/Before/20230127.png")
+img1 = Image.open("../Deneme/Image/before.png")
 img1_data = np.array(img1)
 
 # Flatten the image data

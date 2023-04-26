@@ -3,10 +3,10 @@ import cv2
 import numpy as np
 
 # İlk görüntüyü yükle
-img1 = Image.open('../Deneme/Image/Before/20230127.png')
+img1 = Image.open('../Deneme/Image/before.png')
 
 # İkinci görüntüyü yükle
-img2 = Image.open('../Deneme/Image/After/20230209.png')
+img2 = Image.open('../Deneme/Image/after.png')
 
 # Görüntüleri NumPy dizilerine dönüştür
 img1_np = np.array(img1)

@@ -4,7 +4,7 @@ from PIL import Image
 import matplotlib.pyplot as plt
 
 # Load the image
-img = Image.open('../Deneme/Image/After/20230209.Png')
+img = Image.open('../Deneme/Image/after.png')
 
 # Convert the image to RGB mode
 img = img.convert('RGB')
