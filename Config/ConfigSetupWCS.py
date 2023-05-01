@@ -12,11 +12,15 @@ def get_value_from_json(json_file, key, sub_key):
 
 class ConfigSetupWCS:
 
-    path = "../resources/mapConfigWCS.json"
+    def __init__(self, before_after="before"):
+        if before_after == "before":
+            path = "../resources/mapConfigWCS_before.json"
+        elif before_after == "after":
+            path = "../resources/mapConfigWCS_after.json"
+        else:
+            raise ValueError("Invalid value for before_after parameter")
 
-    def __init__(self, path=path):
         print("Calling the __init__() constructor!\n")
-
         self.time_range = get_value_from_json(path, "map", "time_range")
         self.coords_wgs84 = get_value_from_json(path, "map", "coords_wgs84")
         self.coords_wgs84_WCS = get_value_from_json(path, "map", "coords_wgs84")

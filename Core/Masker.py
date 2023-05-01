@@ -1,46 +1,33 @@
-import geojson as geojson
-import geopandas as gpd
-import numpy as np
 import rasterio
-from matplotlib import pyplot as plt
+import geopandas as gpd
 from rasterio.mask import mask
+import os
 
-from Config.ConfigSetupWCS import ConfigSetupWCS
-from Core.ImagePlotter import plot_image, plot_image_aspect
 
-configSetup = ConfigSetupWCS()
+class Masker:
 
-# Open the image file
-with rasterio.open('../Deneme/Image/After/20230209.tiff') as src:
+    def split_image(self, before_after, main_image_path, geojson_path):
 
-    # Read the GeoJSON file and extract the geometry of the polygon
-    shapefile = gpd.read_file('../resources/AdiyamanGeo.json')
-    polygon = shapefile.geometry.values[0]
+        # Görüntü dosyasını yükleyin
+        with rasterio.open(f'{main_image_path}') as src:
+            # Read the GeoJSON file and extract the geometry of the polygons
+            shapefile = gpd.read_file(f'{geojson_path}')
+            for i, polygon in enumerate(shapefile.geometry):
+                # Görüntüyü maskeleyin
+                out_image, out_transform = mask(src, [polygon], crop=True)
 
-    # Mask the image with the polygon
-    out_image, out_transform = rasterio.mask.mask(src, [polygon], crop=True)
+                # Yeni TIFF dosyasını oluşturun
 
-    # Display the masked image
+                out_file_path = f'Image/masked/{before_after}'
 
-    BLUE_BAND = 2
-    GREEN_BAND = 3
-    RED_BAND = 4
+                if not os.path.exists(out_file_path):
+                    os.makedirs(out_file_path)
 
-    red = out_image[RED_BAND]
-    green = out_image[GREEN_BAND]
-    blue = out_image[BLUE_BAND]
-
-    # 4 3 2 bandı birleşince true color verir
-    rgb = np.dstack((red, green, blue))
-
-    # parlaklığı artır
-
-    ratio = (configSetup.coords_wgs84[2] - configSetup.coords_wgs84[0]) / (
-            configSetup.coords_wgs84[1] - configSetup.coords_wgs84[3])
-
-    plot_image_aspect(rgb, ratio, factor=2.5 / 255)
-    plt.figure(figsize=(100, 100))
-    plt.show()
-
-    plt.imshow(out_image[0], cmap=None)
-    plt.show()
+                out_filename = f'{out_file_path}/split_{i}.tiff'
+                with rasterio.open(out_filename, 'w', driver='GTiff',
+                                   width=out_image.shape[2], height=out_image.shape[1],
+                                   count=src.count, crs=src.crs, transform=out_transform,
+                                   dtype=out_image.dtype) as dst:
+                    # Maskeleme sonucunu yeni TIFF dosyasına kaydedin
+                    dst.write(out_image)
+                    print(f"Masked image saved as {os.path.abspath(out_filename)}")

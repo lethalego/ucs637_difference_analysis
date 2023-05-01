@@ -1,16 +1,16 @@
 from PIL import Image, ImageChops, ImageOps
 
 # İlk görüntüyü aç ve renkliye dönüştür
-img1 = Image.open('../Deneme/Image/Before/20230127.png').convert('RGB')
+img1 = Image.open('../Deneme/Image/before.png').convert('RGB')
 
 # İkinci görüntüyü aç ve renkliye dönüştür
-img2 = Image.open('../Deneme/Image/After/20230209.png').convert('RGB')
+img2 = Image.open('../Deneme/Image/after.png').convert('RGB')
 
 # PILLOW fark al
 diff = ImageChops.difference(img1, img2)
 
 # Farklılıkları belirginleştirmek için eşik değeri kullan
-threshold = 80
+threshold = 120
 mask = diff.point(lambda x: x > threshold and 255)
 
 # Sonuçları görselleştir
@@ -22,6 +22,11 @@ normalized = ImageOps.autocontrast(ImageChops.subtract(img1, img2))
 normalized.show()
 
 # Renkli görüntüyü elde etmek için Image.merge() fonksiyonunu kullanabilirsiniz
-colored = Image.merge('RGB', [img1, img2, ImageChops.subtract(img1, img2)])
+# Convert the grayscale difference image to RGB mode using ImageOps.colorize()
+gray_diff = ImageOps.grayscale(ImageChops.difference(img1, img2))
+gray_diff_rgb = gray_diff.convert("RGB")
+
+# Merge the RGB images with the colorized grayscale difference image
+colored = Image.merge('RGB', [img1, img2, gray_diff_rgb])
 # Renkli görüntüyü göster
 colored.show()

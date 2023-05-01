@@ -1,37 +1,39 @@
-from sklearn.cluster import KMeans
-import numpy as np
 from PIL import Image
-import matplotlib.pyplot as plt
+from matplotlib import pyplot as plt
 
-# Load the image
-img = Image.open('../Deneme/Image/after.png')
+# Görüntüyü yükle ve gri seviyeye dönüştür
+alimage = Image.open("Output/Deneme9_fark.png").convert("L")
 
-# Convert the image to RGB mode
-img = img.convert('RGB')
+# Piksel sınıflarını oluştur
+color_classes = [(0, 255, 0), (255, 0, 0), (0, 0, 255), (255, 255, 0), (255, 0, 255)]
+class_names = ["Yeşil", "Kırmızı", "Mavi", "Sarı", "Pembe"]
+class_colors = {class_names[i]: color_classes[i] for i in range(5)}
+pixel_classes = []
+for i in range(5):
+    pixel_classes.append([])
 
-# Convert the image to a numpy array
-img_array = np.array(img)
+# Her pikselin sınıfını belirle
+pixels = alimage.load()
+for y in range(alimage.height):
+    for x in range(alimage.width):
+        pixel_value = pixels[x, y]
+        class_index = int(pixel_value / 51)
+        pixel_classes[class_index].append((x, y))
 
-# Reshape and resize the image
-img_reshaped = img_array.reshape((-1, 3))
+# Sınıflara ait piksel sayısını hesapla ve ekrana yazdır
+for i in range(5):
+    print("Sınıf", i + 1, "piksel sayısı:", len(pixel_classes[i]))
 
-# Create a k-Means object
-kmeans = KMeans(n_clusters=5, random_state=0)
+# Yeni görüntüyü oluştur ve ekrana göster
+new_image = Image.new("RGB", (alimage.width, alimage.height))
+new_pixels = new_image.load()
+for i in range(5):
+    for pixel in pixel_classes[i]:
+        new_pixels[pixel[0], pixel[1]] = color_classes[i]
 
-# Perform the k-Means clustering
-labels = kmeans.fit_predict(img_reshaped)
 
-# Reshape the labels and create a classified image
-labels_reshaped = labels.reshape(img_array.shape[0], img_array.shape[1])
-classified_img = Image.fromarray(np.uint8(labels_reshaped))
+for class_name, color in class_colors.items():
+    plt.plot([], [], color=color, label=class_name)
 
-# Display the original and classified images side by side
-fig, axs = plt.subplots(1, 2, figsize=(10, 5))
-axs[0].imshow(img)
-axs[0].set_title('Orjinal')
-axs[1].imshow(classified_img)
-axs[1].set_title('Sınıflandırılmış')
+plt.legend()
 plt.show()
-
-# Save the classified image as a PNG
-classified_img.save('sınıflandırılmış_goruntu3.png', 'PNG')

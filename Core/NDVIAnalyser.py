@@ -4,7 +4,7 @@ from matplotlib import pyplot as plt
 
 from Core.ImagePlotter import plot_image
 
-imagePath = '../Deneme/deneme_tiff/1d4a5bde06b55e59838e4d68e04512b4/response.tiff'
+imagePath = '../Deneme/Image/before.tiff'
 
 # Kaydedilen görüntüyü getir
 with rasterio.open(imagePath) as src:

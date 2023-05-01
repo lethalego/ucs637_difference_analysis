@@ -21,4 +21,4 @@ img1_clusters_rgb = np.zeros_like(img1_data)
 for i in range(3):
     img1_clusters_rgb[:, :, i] = (img1_clusters == i) * 255
 img1_clusters_rgb = Image.fromarray(img1_clusters_rgb)
-img1_clusters_rgb.save("test_image_clustered.png")
+img1_clusters_rgb.show()

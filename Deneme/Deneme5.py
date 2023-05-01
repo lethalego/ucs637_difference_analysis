@@ -52,4 +52,4 @@ plt.show()
 
 # Save the classified image as a PNG
 classified_img = Image.fromarray((classified_img * 255).astype(np.uint8))
-classified_img.save('sınıflandırılmış_goruntu1.png', 'PNG')
+classified_img.save('Output/deneme5_siniflandirilmis_before.png', 'PNG')
