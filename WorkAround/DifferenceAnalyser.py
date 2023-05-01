@@ -1,10 +1,10 @@
 from PIL import Image, ImageChops, ImageOps
 
 # İlk görüntüyü aç ve renkliye dönüştür
-img1 = Image.open('../Deneme/Image/before.png').convert('RGB')
+img1 = Image.open('Image/before.png').convert('RGB')
 
 # İkinci görüntüyü aç ve renkliye dönüştür
-img2 = Image.open('../Deneme/Image/after.png').convert('RGB')
+img2 = Image.open('Image/after.png').convert('RGB')
 
 # PILLOW fark al
 diff = ImageChops.difference(img1, img2)

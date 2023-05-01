@@ -7,7 +7,7 @@
        "layer": "ALL_BANDS",
        "resX": "10m",
        "resY": "10m",
-       "data_folder": "Image/raw/after"
+       "data_folder": "Image/1.raw/after"
    },
    "server": {
        "host": "",

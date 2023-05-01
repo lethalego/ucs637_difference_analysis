@@ -16,7 +16,7 @@ class Normalyzer:
 
         nameToSave = os.path.splitext(os.path.basename(image_path))[0] + ".png"
         # Görüntüyü kaydet
-        out_file_path = f'Image/normalyzed/{before_after}'
+        out_file_path = f'Image/4.normalyzed/{before_after}'
 
         if not os.path.exists(out_file_path):
             os.makedirs(out_file_path)
@@ -33,7 +33,7 @@ class Normalyzer:
 
         name_to_save = os.path.splitext(os.path.basename(image_path))[0] + ".png"
         # Görüntüyü kaydet
-        out_file_path = f'Image/histogram/{before_after}'
+        out_file_path = f'Image/5.histogram/{before_after}'
 
         if not os.path.exists(out_file_path):
             os.makedirs(out_file_path)

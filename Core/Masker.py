@@ -18,7 +18,7 @@ class Masker:
 
                 # Yeni TIFF dosyasını oluşturun
 
-                out_file_path = f'Image/masked/{before_after}'
+                out_file_path = f'Image/2.masked/{before_after}'
 
                 if not os.path.exists(out_file_path):
                     os.makedirs(out_file_path)

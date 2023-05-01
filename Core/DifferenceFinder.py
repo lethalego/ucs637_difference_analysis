@@ -18,33 +18,9 @@ class DifferenceFinder:
 
         name_to_save = os.path.splitext(os.path.basename(image_path_1))[0] + ".png"
         # Görüntüyü kaydet
-        out_file_path = f'Image/difference'
+        out_file_path = f'Image/6.difference'
 
         if not os.path.exists(out_file_path):
             os.makedirs(out_file_path)
 
         result.save(f'{out_file_path}/{name_to_save}')
-
-
-        def get_threshold(image_path):
-            # Görüntüyü yükle
-            img = Image.open(image_path).convert('L')
-
-            # Histogramı hesapla
-            histogram, bin_edges = np.histogram(img, bins=256, range=(0, 255))
-
-            # Histogramın birinci türevini hesapla
-            diff = np.diff(histogram)
-
-            # En büyük farkın olduğu indeksi bul
-            index = np.argmax(diff)
-
-            # Eşik değerini belirle
-            threshold = bin_edges[index]
-
-            return threshold
-
-
-        # Örnek kullanım
-        threshold = get_threshold('Image/histogram/before/image1.png')
-        print(threshold)

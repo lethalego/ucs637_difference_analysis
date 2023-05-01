@@ -50,3 +50,5 @@ class WCSMapFetcher:
         for folder, _, filenames in os.walk(wcs_bands_request.data_folder):
             for filename in filenames:
                 print(os.path.join(folder, filename))
+
+        print(self)

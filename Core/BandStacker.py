@@ -42,7 +42,7 @@ class BandStacker:
             nameToSave = os.path.splitext(os.path.basename(image_path))[0] + ".png"
 
             # Görüntüyü kaydet
-            out_file_path = f'Image/stack/{before_after}'
+            out_file_path = f'Image/3.stack/{before_after}'
 
             if not os.path.exists(out_file_path):
                 os.makedirs(out_file_path)
