@@ -27,12 +27,12 @@ after_tiff_path = file_operations.find_file_under_folder_with_extension("Image/1
 
 masker.split_image("before",
                    before_tiff_path,
-                   "../resources/AdiyamanBolgelerGeo.json")
+                   "../resources/AdiyamanPart1.json")
 
 # 2.2 after
 masker.split_image("after",
                    after_tiff_path,
-                   "../resources/AdiyamanBolgelerGeo.json")
+                   "../resources/AdiyamanPart1.json")
 
 # 3. 4 3 2 bantlarını birleştir kaydet
 bandStacker = BandStacker()
@@ -95,7 +95,7 @@ for path in file_paths_before:
 thresholder = Thresholder()
 file_paths_difference = file_operations.find_file_under_folder_with_extension("Image/6.difference", ".png")
 for path in file_paths_difference:
-    thresholder.apply_threshold(path, 100)
+    thresholder.apply_threshold(path, 55)
 
 # 8.	 Farkı orijinal görüntüye oturt kaydet
 result_plotter = ResultPlotter()

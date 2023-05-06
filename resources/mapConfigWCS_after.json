@@ -1,6 +1,6 @@
 {
    "map": {
-       "time_range": ["2023-04-25", "2023-04-25"],
+       "time_range": ["2023-05-05", "2023-05-05"],
        "coords_wgs84": [38.209100911228376,37.78707716093844, 38.33207093825783, 37.729294075874265],
        "cloud_coverage": 0.3,
        "data_collection": "DataCollection.SENTINEL2_L2A",
