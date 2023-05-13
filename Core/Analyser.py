@@ -27,12 +27,12 @@ after_tiff_path = file_operations.find_file_under_folder_with_extension("Image/1
 
 masker.split_image("before",
                    before_tiff_path,
-                   "../resources/AdiyamanPart1.json")
+                   "../resources/AdiyamanBolgelerGeo.json")
 
 # 2.2 after
 masker.split_image("after",
                    after_tiff_path,
-                   "../resources/AdiyamanPart1.json")
+                   "../resources/AdiyamanBolgelerGeo.json")
 
 # 3. 4 3 2 bantlarını birleştir kaydet
 bandStacker = BandStacker()
@@ -54,15 +54,14 @@ normalyzer = Normalyzer()
 # 4.1 before
 file_paths_before_stacked = file_operations.find_file_under_folder_with_extension("Image/3.stack/before", ".png")
 for path in file_paths_before_stacked:
-    normalyzer.mormalyze_min_max("before", path)
+    normalyzer.normalyze_min_max("before", path)
 
 # 4.2 after
 file_paths_after_stacked = file_operations.find_file_under_folder_with_extension("Image/3.stack/after", ".png")
 for path in file_paths_after_stacked:
-    normalyzer.mormalyze_min_max("after", path)
+    normalyzer.normalyze_min_max("after", path)
 
-
-# 5.	 Enhencement- histogram eşitleme çalıştır kaydet
+# 5.	 Enhancement- histogram eşitleme çalıştır kaydet
 
 # 5.1 before
 file_paths_before = file_operations.find_file_under_folder_with_extension("Image/4.normalyzed/before", ".png")
@@ -73,7 +72,6 @@ for path in file_paths_before:
 file_paths_after = file_operations.find_file_under_folder_with_extension("Image/4.normalyzed/after", ".png")
 for path in file_paths_after:
     normalyzer.normalyze_histogram("after", path)
-
 
 # 6.	 Fark al kaydet
 difference_finder = DifferenceFinder()
@@ -89,13 +87,15 @@ for path in file_paths_before:
     if len(matching_files) > 0:
         difference_finder.get_difference(path, matching_files[0])
 
-
 # 7. threshold uygula
 
 thresholder = Thresholder()
 file_paths_difference = file_operations.find_file_under_folder_with_extension("Image/6.difference", ".png")
 for path in file_paths_difference:
     thresholder.apply_threshold(path, 55)
+    # thresholder.apply_mean_threshold(path) #14.4
+    # thresholder.apply_threshold_otsu(path) #ortalama eşik değer 65.8, 255 ler olmayınca 44.78
+    # thresholder.apply_threshold_gaussian(path) #ortalama eşik değer 56.8
 
 # 8.	 Farkı orijinal görüntüye oturt kaydet
 result_plotter = ResultPlotter()
@@ -111,8 +111,3 @@ for path in file_paths_before:
     # Eşleşen dosya varsa, dosya yollarını yazdırabiliriz
     if len(matching_files_after) > 0:
         result_plotter.aplly_plot(path, matching_files_after[0], matching_files_difference_thresholded[0])
-
-# 9.	 Görüntünün m2 hesapla
-# 10.	 Değişim gösterenlerin m2 hesapla
-# 11.	 En çok değişim oranlarını bul
-# 12.	 Değişim oranıyla nüfusu birleştir
