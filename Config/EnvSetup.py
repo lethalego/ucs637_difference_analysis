@@ -9,9 +9,9 @@ class EnvSetup:
 
         secrets = dotenv_values("../resources/secrets.env")
 
-        self.client_Id = secrets["CLIENT_ID"]
-        self.client_secret = secrets["CLIENT_SECRET"]
-        self.instance_id = secrets["INSTANCE_ID"]
+        self.client_Id = secrets["CLIENT_ID"] #user_id
+        self.client_secret = secrets["CLIENT_SECRET"] #secret
+        self.instance_id = secrets["INSTANCE_ID"] #configuration_id
 
         # yeni bir secret getirmek için
         # secrets2 = dotenv_values("secrets2.env")
