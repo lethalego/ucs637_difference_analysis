@@ -51,9 +51,12 @@ class Thresholder:
             class_means[i] = class_means[i - 1] + i * pixel_probabilities[i]
 
         # Toplam ortalama ve sınıf varyansını hesapla
+
+        epsilon = 1e-10  # Küçük bir değer (eps) eklendi
+
         total_mean = np.sum(np.arange(256) * pixel_probabilities)
         between_class_variances = (total_mean * class_probabilities - class_means) ** 2 / (
-                class_probabilities * (1 - class_probabilities))
+                class_probabilities * (1 - class_probabilities + epsilon))
 
         # Eşik değerini Otsu yöntemine göre belirle
         threshold_value = np.argmax(between_class_variances)
