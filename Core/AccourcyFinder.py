@@ -11,8 +11,8 @@ class AccourcyFinder:
         image = Image.open(f'{file_path}/#PL_Test.png')
         # Diziyi dönüştürme ve veri tipini ayarlama
         image_array = np.array(image, dtype=np.uint8)
-        if(image_array.max() ==1):
-            image_array = image_array*255
+        if (image_array.max() == 1):
+            image_array = image_array * 255
 
         image_test_array = np.array([
             [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -114,7 +114,7 @@ class AccourcyFinder:
         tp = confusion_matrix[1, 1]
         fp = confusion_matrix[0, 1]
 
-        if((tp+fp)==0):
+        if ((tp + fp) == 0):
             precision_score = 0
         else:
             precision_score = tp / (tp + fp)
@@ -144,4 +144,3 @@ class AccourcyFinder:
             f1_score = 2 * (precision_score * recall_score) / (precision_score + recall_score)
 
         return f1_score
-

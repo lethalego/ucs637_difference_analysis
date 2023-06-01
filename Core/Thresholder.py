@@ -74,7 +74,7 @@ class Thresholder:
         out_file_path = f'Image/{combination_name}/7.thresholded'
 
         # print(f'{nameToSave}(threshold): {threshold_value} ')
-        print(f'{threshold_value} ')
+        #print(f'{threshold_value} ')
 
         if not os.path.exists(out_file_path):
             os.makedirs(out_file_path)
@@ -106,7 +106,7 @@ class Thresholder:
         out_file_path = f'Image/{combination_name}/7.thresholded'
 
         # print(f'{nameToSave}(threshold): {threshold_value} ')
-        print(f'{threshold_value} ')
+        #print(f'{threshold_value} ')
 
         if not os.path.exists(out_file_path):
             os.makedirs(out_file_path)
@@ -142,5 +142,3 @@ class Thresholder:
             os.makedirs(out_file_path)
 
         result.save(f'{out_file_path}/{nameToSave}')
-
-

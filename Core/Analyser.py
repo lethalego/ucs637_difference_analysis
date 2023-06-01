@@ -75,13 +75,13 @@ for combination_name in band_combination_list:
     file_paths_before_stacked = file_operations.find_file_under_folder_with_extension(
         f'Image/{combination_name}/3.stack/before', ".png")
     for path in file_paths_before_stacked:
-        normalyzer.normalize_clahe("before", path, combination_name)
+        normalyzer.normalyze_min_max("before", path, combination_name)
 
     # 4.2 after
     file_paths_after_stacked = file_operations.find_file_under_folder_with_extension(
         f'Image/{combination_name}/3.stack/after', ".png")
     for path in file_paths_after_stacked:
-        normalyzer.normalize_clahe("after", path, combination_name)
+        normalyzer.normalyze_min_max("after", path, combination_name)
 
     # 5.	 Enhancement- histogram eşitleme çalıştır kaydet
 
@@ -110,7 +110,7 @@ for combination_name in band_combination_list:
         matching_files = glob.glob(f"Image/{combination_name}/5.histogram/after/{filename}")
         # Eşleşen dosya varsa, dosya yollarını yazdırabiliriz
         if len(matching_files) > 0:
-            difference_finder.get_difference(path, matching_files[0], combination_name)
+            difference_finder.get_difference_MSE(path, matching_files[0], combination_name)
 
     # 7. threshold uygula
 
@@ -118,8 +118,8 @@ for combination_name in band_combination_list:
     file_paths_difference = file_operations.find_file_under_folder_with_extension(
         f"Image/{combination_name}/6.difference", ".png")
     for path in file_paths_difference:
-        # thresholder.apply_threshold(path, 55, combination_name)
-        thresholder.apply_mean_threshold(path, combination_name)  # 14.4
+         thresholder.apply_threshold(path, 90, combination_name)
+         #thresholder.apply_mean_threshold(path, combination_name)  # 14.4
         # thresholder.apply_threshold_otsu(path, combination_name)  # ortalama eşik değer 65.8, 255 ler olmayınca 44.78
         # thresholder.apply_threshold_gaussian(path, combination_name) #ortalama eşik değer 56.8
 

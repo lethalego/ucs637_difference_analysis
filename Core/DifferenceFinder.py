@@ -49,7 +49,7 @@ class DifferenceFinder:
         mse = np.mean(np.square(diff))
 
         # Sonuçları yazdır
-        print(f"Mean Squared Error (MSE): {mse}")
+        #print(f"Mean Squared Error (MSE): {mse}")
 
         # Fark görüntüsünü kaydet
         name_to_save = os.path.splitext(os.path.basename(image_path_1))[0] + ".png"
