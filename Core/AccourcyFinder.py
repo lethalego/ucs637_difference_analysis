@@ -7,8 +7,8 @@ import numpy as np
 
 class AccourcyFinder:
 
-    def find_accourcy(self):
-        image = Image.open(f'Image/7.thresholded/#PL_Test.png')
+    def find_accourcy(self, file_path):
+        image = Image.open(f'{file_path}/#PL_Test.png')
         # Diziyi dönüştürme ve veri tipini ayarlama
         image_array = np.array(image, dtype=np.uint8)
         if(image_array.max() ==1):

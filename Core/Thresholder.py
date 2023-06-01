@@ -7,7 +7,7 @@ from PIL import Image, ImageChops, ImageFilter
 
 class Thresholder:
 
-    def apply_threshold(self, image_path, threshold_value):
+    def apply_threshold(self, image_path, threshold_value, combination_name):
         image = Image.open(f'{image_path}').convert("L")
 
         # Yoğunluk farkına göre sınıflandır
@@ -16,14 +16,14 @@ class Thresholder:
         # Sınıflandırılmış fark görüntüsünü görüntüle
         nameToSave = os.path.splitext(os.path.basename(image_path))[0] + ".png"
         # Görüntüyü kaydet
-        out_file_path = f'Image/7.thresholded'
+        out_file_path = f'Image/{combination_name}/7.thresholded'
 
         if not os.path.exists(out_file_path):
             os.makedirs(out_file_path)
 
         classified.save(f'{out_file_path}/{nameToSave}')
 
-    def apply_threshold_otsu(self, image_path):
+    def apply_threshold_otsu(self, image_path, combination_name):
         # Görüntüyü yükle ve gri tonlamalı hale getir
         img = Image.open(f'{image_path}').convert('L')
 
@@ -71,7 +71,7 @@ class Thresholder:
         # Sınıflandırılmış fark görüntüsünü görüntüle
         nameToSave = os.path.splitext(os.path.basename(image_path))[0] + ".png"
         # Görüntüyü kaydet
-        out_file_path = f'Image/7.thresholded'
+        out_file_path = f'Image/{combination_name}/7.thresholded'
 
         # print(f'{nameToSave}(threshold): {threshold_value} ')
         print(f'{threshold_value} ')
@@ -81,7 +81,7 @@ class Thresholder:
 
         classified.save(f'{out_file_path}/{nameToSave}')
 
-    def apply_threshold_gaussian(self, image_path):
+    def apply_threshold_gaussian(self, image_path, combination_name):
 
         image = Image.open(f'{image_path}').convert("L")
         # Resmi bir NumPy dizisine dönüştür
@@ -103,7 +103,7 @@ class Thresholder:
         # Sınıflandırılmış fark görüntüsünü görüntüle
         nameToSave = os.path.splitext(os.path.basename(image_path))[0] + ".png"
         # Görüntüyü kaydet
-        out_file_path = f'Image/7.thresholded'
+        out_file_path = f'Image/{combination_name}/7.thresholded'
 
         # print(f'{nameToSave}(threshold): {threshold_value} ')
         print(f'{threshold_value} ')
@@ -113,7 +113,7 @@ class Thresholder:
 
         result.save(f'{out_file_path}/{nameToSave}')
 
-    def apply_mean_threshold(self, image_path):
+    def apply_mean_threshold(self, image_path, combination_name):
         image = Image.open(f'{image_path}').convert("L")
         # Resmi bir NumPy dizisine dönüştür
         image_array = np.array(image)
@@ -133,10 +133,10 @@ class Thresholder:
         # Sınıflandırılmış fark görüntüsünü görüntüle
         nameToSave = os.path.splitext(os.path.basename(image_path))[0] + ".png"
         # Görüntüyü kaydet
-        out_file_path = f'Image/7.thresholded'
+        out_file_path = f'Image/{combination_name}/7.thresholded'
 
         # print(f'{nameToSave}(threshold): {threshold_value} ')
-        print(f'{threshold_value} ')
+        #print(f'{threshold_value} ')
 
         if not os.path.exists(out_file_path):
             os.makedirs(out_file_path)

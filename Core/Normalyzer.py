@@ -7,7 +7,7 @@ from skimage import exposure
 
 class Normalyzer:
 
-    def normalyze_min_max(self, before_after, image_path):
+    def normalyze_min_max(self, before_after, image_path, combination_name):
         image = Image.open(f'{image_path}').convert("L")
         image_array = np.array(image)
 
@@ -17,14 +17,14 @@ class Normalyzer:
 
         nameToSave = os.path.splitext(os.path.basename(image_path))[0] + ".png"
         # Görüntüyü kaydet
-        out_file_path = f'Image/4.normalyzed/{before_after}'
+        out_file_path = f'Image/{combination_name}/4.normalyzed/{before_after}'
 
         if not os.path.exists(out_file_path):
             os.makedirs(out_file_path)
 
         normalized_image.save(f'{out_file_path}/{nameToSave}')
 
-    def normalize_z_score(self, before_after, image_path):
+    def normalize_z_score(self, before_after, image_path, combination_name):
         image = Image.open(f'{image_path}').convert("L")
         image_array = np.array(image)
 
@@ -36,14 +36,14 @@ class Normalyzer:
         # Dosya adını oluştur
         nameToSave = os.path.splitext(os.path.basename(image_path))[0] + ".png"
         # Görüntüyü kaydet
-        out_file_path = f'Image/4.normalyzed/{before_after}'
+        out_file_path = f'Image/{combination_name}/4.normalyzed/{before_after}'
 
         if not os.path.exists(out_file_path):
             os.makedirs(out_file_path)
 
         normalized_image.save(f'{out_file_path}/{nameToSave}')
 
-    def normalize_clahe(self, before_after, image_path):
+    def normalize_clahe(self, before_after, image_path, combination_name):
         # Resmi yükle ve dönüştür
         image = Image.open(f'{image_path}').convert("L")
         image_array = np.array(image)
@@ -57,7 +57,7 @@ class Normalyzer:
 
         # Dosya adını hazırla ve kaydet
         nameToSave = os.path.splitext(os.path.basename(image_path))[0] + ".png"
-        out_file_path = f'Image/4.normalyzed/{before_after}'
+        out_file_path = f'Image/{combination_name}/4.normalyzed/{before_after}'
 
         if not os.path.exists(out_file_path):
             os.makedirs(out_file_path)
@@ -65,7 +65,7 @@ class Normalyzer:
         normalized_image.save(f'{out_file_path}/{nameToSave}')
 
     #Global Histogram Normalleştirme
-    def normalyze_histogram(self, before_after, image_path):
+    def normalyze_histogram(self, before_after, image_path, combination_name):
         image = Image.open(f'{image_path}')
         image_array = np.array(image)
 
@@ -75,7 +75,7 @@ class Normalyzer:
 
         name_to_save = os.path.splitext(os.path.basename(image_path))[0] + ".png"
         # Görüntüyü kaydet
-        out_file_path = f'Image/5.histogram/{before_after}'
+        out_file_path = f'Image/{combination_name}/5.histogram/{before_after}'
 
         if not os.path.exists(out_file_path):
             os.makedirs(out_file_path)

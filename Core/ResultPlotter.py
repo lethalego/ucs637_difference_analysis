@@ -7,7 +7,7 @@ from matplotlib import pyplot as plt
 
 class ResultPlotter:
 
-    def aplly_plot(self, before_path, after_path, diff_path):
+    def aplly_plot(self, before_path, after_path, diff_path, combination_name):
         # İki görüntüyü yükleme
         img1 = Image.open(f'{before_path}')
         img2 = Image.open(f'{after_path}')
@@ -64,7 +64,7 @@ class ResultPlotter:
 
         name_to_save = os.path.splitext(os.path.basename(before_path))[0] + ".png"
         # Görüntüyü kaydet
-        out_file_path = f'Image/8.result'
+        out_file_path = f'Image/{combination_name}/8.result'
 
         if not os.path.exists(out_file_path):
             os.makedirs(out_file_path)

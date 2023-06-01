@@ -8,7 +8,7 @@ from skimage import measure
 
 class DifferenceFinder:
 
-    def get_difference(self, image_path_1, image_path_2):
+    def get_difference(self, image_path_1, image_path_2, combination_name):
         # İlk görüntüyü yükle
         img1 = Image.open(f'{image_path_1}')
 
@@ -20,7 +20,7 @@ class DifferenceFinder:
 
         name_to_save = os.path.splitext(os.path.basename(image_path_1))[0] + ".png"
         # Görüntüyü kaydet
-        out_file_path = f'Image/6.difference'
+        out_file_path = f'Image/{combination_name}/6.difference'
 
         if not os.path.exists(out_file_path):
             os.makedirs(out_file_path)
@@ -28,7 +28,7 @@ class DifferenceFinder:
         result.save(f'{out_file_path}/{name_to_save}')
 
     # Mean Squared Error (MSE)
-    def get_difference_MSE(self, image_path_1, image_path_2):
+    def get_difference_MSE(self, image_path_1, image_path_2, combination_name):
         # İlk görüntüyü yükle
         img1 = Image.open(f'{image_path_1}')
 
@@ -53,7 +53,7 @@ class DifferenceFinder:
 
         # Fark görüntüsünü kaydet
         name_to_save = os.path.splitext(os.path.basename(image_path_1))[0] + ".png"
-        out_file_path = f'Image/6.difference'
+        out_file_path = f'Image/{combination_name}/6.difference'
 
         if not os.path.exists(out_file_path):
             os.makedirs(out_file_path)

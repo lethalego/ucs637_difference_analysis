@@ -29,4 +29,3 @@ class Masker:
                                    dtype=out_image.dtype) as dst:
                     # Maskeleme sonucunu yeni TIFF dosyasına kaydedin
                     dst.write(out_image)
-                    print(f"Masked image saved as {os.path.abspath(out_filename)}")
