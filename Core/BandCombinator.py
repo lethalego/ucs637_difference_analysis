@@ -95,6 +95,12 @@ class BandCombinator:
             elif (combination_name == "RGB (11,8,3)"):
                 result = self.RGB1183(B11, B08, B03)
 
+            elif (combination_name == "RGB (12,11,4)"):
+                result = self.RGB12114(B12, B11, B04)
+
+            elif (combination_name == "RGB (11,8,4)"):
+                result = self.RGB1184(B11, B08, B04)
+
             elif (combination_name == "Vegetation_Index"):
                 result = self.VegetationIndex(B08, B04)
 
@@ -134,6 +140,15 @@ class BandCombinator:
         return np.dstack((Band1, Band2, Band3))
 
     def RGB1183(self, Band1, Band2, Band3):
+        return np.dstack((Band1, Band2, Band3))
+
+    def RGB12114(self, Band1, Band2, Band3):
+        return np.dstack((Band1, Band2, Band3))
+
+    def RGB12118A(self, Band1, Band2, Band3):
+        return np.dstack((Band1, Band2, Band3))
+
+    def RGB1184(self, Band1, Band2, Band3):
         return np.dstack((Band1, Band2, Band3))
 
     def VegetationIndex(self, Band1, Band2):

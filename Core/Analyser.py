@@ -47,7 +47,9 @@ band_combination_list = [
     'RGB (8,5,4)',
     'RGB (8,11,4)',
     'RGB (8,11,12)',
-    'RGB (11,8,3)'
+    'RGB (11,8,3)',
+    'RGB (12,11,4)',
+    'RGB (11,8,4)'
 ]
 
 for combination_name in band_combination_list:

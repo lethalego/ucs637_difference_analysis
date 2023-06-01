@@ -42,25 +42,25 @@ class AccourcyFinder:
         accuracy = (match_count / total_pixels) * 100
 
         # Sonuçları yazdırma
-        print("Eşleşen piksel sayısı:", match_count)
-        print("Doğruluk oranı (%):", accuracy)
+        # print("Eşleşen piksel sayısı:", match_count)
+        # print("Doğruluk oranı (%):", accuracy)
 
-        dogruluk = np.mean(image_array == image_test_array)
+        # dogruluk = np.mean(image_array == image_test_array)
+        #
+        # print("Doğruluk:", dogruluk)
 
-        print("Doğruluk:", dogruluk)
-
-        # MSE hesaplama
-        mse = np.mean((image_array - image_test_array) ** 2)
-
-        # Normalizasyon
-        normalized_mse = (mse / (255 ** 2)) * 100
-
-        print("Normalized MSE:", normalized_mse)
-
-        # SSIM hesaplama
-        ssim_degeri = ssim(image_array, image_test_array, data_range=image_array.max() - image_array.min())
-
-        print("SSIM Değeri:", ssim_degeri)
+        # # MSE hesaplama
+        # mse = np.mean((image_array - image_test_array) ** 2)
+        #
+        # # Normalizasyon
+        # normalized_mse = (mse / (255 ** 2)) * 100
+        #
+        # print("Normalized MSE:", normalized_mse)
+        #
+        # # SSIM hesaplama
+        # ssim_degeri = ssim(image_array, image_test_array, data_range=image_array.max() - image_array.min())
+        #
+        # print("SSIM Değeri:", ssim_degeri)
         ##################################################################
         # Doğru eşleşen piksellerin sayısını bulma
         dogru_eslesen_pikseller = np.sum(image_array == image_test_array)
@@ -71,34 +71,44 @@ class AccourcyFinder:
         # Piksel bazında doğruluk oranı
         dogruluk_orani = dogru_eslesen_pikseller / toplam_piksel_sayisi
 
-        print("Piksel Bazında Doğruluk Oranı:", dogruluk_orani)
+        #print("Piksel Bazında Doğruluk Oranı:", dogruluk_orani)
 
         #########################################################
         # Doğruluk matrisini oluşturma
         confusion_mat = confusion_matrix(image_test_array.flatten(), image_array.flatten())
 
-        print("Confusion Matrix:")
+        TP = confusion_mat[1, 1]  # Gerçek pozitif sayısı
+        TN = confusion_mat[0, 0]  # Gerçek negatif sayısı
+        FP = confusion_mat[0, 1]  # Yanlış pozitif sayısı
+        FN = confusion_mat[1, 0]  # Yanlış negatif sayısı
+
+        print(TP)
+        print(TN)
+        print(FP)
+        print(FN)
+
+        # print("Confusion Matrix:")
         print(confusion_mat)
 
         # Doğruluk oranı hesaplama
         acc = self.accuracy(confusion_mat)
-        print("Accuracy:", acc)
+        print(acc)
 
         # Hassasiyet hesaplama
         prec = self.precision(confusion_mat)
-        print("Precision:", prec)
+        print(prec)
 
         # Özgünlük hesaplama
         spec = self.specificity(confusion_mat)
-        print("Specificity:", spec)
+        print(spec)
 
         # Duyarlılık hesaplama
         rec = self.recall(confusion_mat)
-        print("Recall:", rec)
+        print(rec)
 
         # F1 skoru hesaplama
         f1 = self.f1_score(confusion_mat)
-        print("F1 Score:", f1)
+        print(f1)
 
     def accuracy(self, confusion_matrix):
         tp = confusion_matrix[1, 1]
