@@ -1,13 +1,17 @@
+import os
+
+from matplotlib import pyplot as plt
 from skimage.metrics import structural_similarity as ssim
 from PIL import Image, ImageOps
 from sklearn.metrics import confusion_matrix
 
 import numpy as np
+import seaborn as sns
 
 
 class AccourcyFinder:
 
-    def find_accourcy(self, file_path):
+    def find_accourcy(self, file_path, combination_name):
         image = Image.open(f'{file_path}/#PL_Test.png')
         # Diziyi dönüştürme ve veri tipini ayarlama
         image_array = np.array(image, dtype=np.uint8)
@@ -71,7 +75,7 @@ class AccourcyFinder:
         # Piksel bazında doğruluk oranı
         dogruluk_orani = dogru_eslesen_pikseller / toplam_piksel_sayisi
 
-        #print("Piksel Bazında Doğruluk Oranı:", dogruluk_orani)
+        # print("Piksel Bazında Doğruluk Oranı:", dogruluk_orani)
 
         #########################################################
         # Doğruluk matrisini oluşturma
@@ -109,6 +113,42 @@ class AccourcyFinder:
         # F1 skoru hesaplama
         f1 = self.f1_score(confusion_mat)
         print(f1)
+
+        plt.clf()
+        # Karışıklık matrisini görselleştirme
+        sns.heatmap(confusion_mat, annot=True, cmap='Blues', fmt='d')
+        plt.xlabel("Tahmin Edilen Etiket")
+        plt.ylabel("Gerçek Etiket")
+        plt.title(f"Karışıklık Matrisi({combination_name})")
+
+        name_to_save = "confusionMatix.png"
+        # Görüntüyü kaydet
+        out_file_path = f'Image/{combination_name}/8.result'
+
+        if not os.path.exists(out_file_path):
+            os.makedirs(out_file_path)
+
+        plt.savefig(f'{out_file_path}/plot_{combination_name}{name_to_save}')
+
+        plt.clf()
+
+        # Doğruluk, hassasiyet, özgünlük, duyarlılık ve F1 skoru görselleştirme
+        metrics = ['Doğruluk', 'Hassasiyet', 'Özgünlük', 'Duyarlılık', 'F1 Skoru']
+        values = [acc, prec, spec, rec, f1]
+
+        plt.bar(metrics, values)
+        plt.xlabel("Metrik")
+        plt.ylabel("Değer")
+        plt.title(f"Performans Metrikleri({combination_name})")
+
+        name_to_save = "performance.png"
+        # Görüntüyü kaydet
+        out_file_path = f'Image/{combination_name}/8.result'
+
+        if not os.path.exists(out_file_path):
+            os.makedirs(out_file_path)
+
+        plt.savefig(f'{out_file_path}/plot_{combination_name}{name_to_save}')
 
     def accuracy(self, confusion_matrix):
         tp = confusion_matrix[1, 1]

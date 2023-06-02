@@ -52,9 +52,10 @@ band_combination_list = [
     'RGB (11,8,4)'
 ]
 
+
 for combination_name in band_combination_list:
 
-    print(combination_name)
+    print(f"started ({combination_name})******************************************************************************")
 
     # 3. 4 3 2 bantlarını birleştir kaydet
     bandStacker = BandStacker()
@@ -145,6 +146,6 @@ for combination_name in band_combination_list:
     # 9. Doğruluk Analizi
 
     accoucyFinder = AccourcyFinder()
-    accoucyFinder.find_accourcy(f'Image/{combination_name}/7.thresholded')
+    accoucyFinder.find_accourcy(f'Image/{combination_name}/7.thresholded',combination_name)
 
-    print(f'finished {combination_name}')
+    print(f'finished {combination_name}*********************************************************************************')
