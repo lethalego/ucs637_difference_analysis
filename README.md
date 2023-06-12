@@ -1,4 +1,4 @@
-# Değişim Tespit(Differenc Analysis
+# Değişim Tespit(Difference Analysis
 
 Uygulama, bir bölgenin, iki farklı zamanda çekilen uydu görğntğlerinin karşılaştırılmasını sağlar.
 Bunun için Sentinel-2 L2A uydu görüntülerini kullanır. 
