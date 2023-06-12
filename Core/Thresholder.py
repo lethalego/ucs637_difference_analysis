@@ -1,8 +1,7 @@
 import os
 
-import cv2
 import numpy as np
-from PIL import Image, ImageChops, ImageFilter
+from PIL import Image
 
 
 class Thresholder:

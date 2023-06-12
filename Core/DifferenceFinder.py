@@ -1,9 +1,7 @@
-import io
 import os
 
 import numpy as np
 from PIL import Image, ImageOps, ImageChops
-from skimage import measure
 
 
 class DifferenceFinder:

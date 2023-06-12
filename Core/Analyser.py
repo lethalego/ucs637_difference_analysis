@@ -121,8 +121,8 @@ for combination_name in band_combination_list:
     file_paths_difference = file_operations.find_file_under_folder_with_extension(
         f"Image/{combination_name}/6.difference", ".png")
     for path in file_paths_difference:
-         thresholder.apply_threshold(path, 90, combination_name)
-         #thresholder.apply_mean_threshold(path, combination_name)  # 14.4
+         #thresholder.apply_threshold(path, 90, combination_name)
+         thresholder.apply_mean_threshold(path, combination_name)  # 14.4
         # thresholder.apply_threshold_otsu(path, combination_name)  # ortalama eşik değer 65.8, 255 ler olmayınca 44.78
         # thresholder.apply_threshold_gaussian(path, combination_name) #ortalama eşik değer 56.8
 
